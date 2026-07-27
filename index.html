@@ -11,59 +11,74 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div class="layout">
-<aside class="sidebar">
-  <div class="brand">
-    <img src="assets/logo.png" alt="Aestus seal" />
-    <span class="word">Aestus</span>
-  </div>
-
-  <div class="nav-group">
-    <div class="nav-label">Apps</div>
-    <a href="terminal.html">Aestus Terminal<svg class="ext" viewBox="0 0 7 7" fill="currentColor"><path d="M0.39 6.62C0.2 6.43 0.19 6.17 0.38 5.98L4.67 1.68L5.33 1.08L3.18 1.15H1.89C1.65 1.15 1.44 0.95 1.44 0.71C1.44 0.46 1.62 0.25 1.91 0.25H6.27C6.57 0.25 6.76 0.45 6.76 0.73V5.1C6.76 5.37 6.54 5.57 6.3 5.57C6.05 5.57 5.85 5.35 5.85 5.12V3.8L5.94 1.64L5.31 2.33L1.02 6.62C0.83 6.8 0.57 6.79 0.39 6.62Z"/></svg></a>
-  </div>
-
-  <div class="nav-group toc">
-    <div class="nav-label">Table of Contents</div>
-    <a href="#intro" class="active">1. Introduction</a>
-    <a href="#tide">2. The Macro Aestus</a>
-    <a href="#model">3. Cross-Asset Model</a>
-    <a href="#empirical">4. Empirical Results</a>
-    <a href="#oracle">5. The Aestus Oracle</a>
-    <a href="#spec">6. Specifications</a>
-    <a href="#usecases">7. Use Cases</a>
-    <a href="#security">8. Security</a>
-    <a href="#token">9. The Aestus Token</a>
-    <a href="#disc">10. Disclaimers</a>
-  </div>
-
-  <div class="nav-group">
-    <div class="nav-label">Launch</div>
-    <span class="side-meta"><span class="k">Ticker</span> <span class="v mono">AESTUS</span></span>
-    <span class="side-meta"><span class="k">CA</span> <span class="v mono">TBA</span></span>
-  </div>
-
-  <div class="nav-group">
-    <div class="nav-label">Links</div>
+<header class="site-bar">
+  <img src="assets/logo.png" alt="Aestus seal" />
+  <span class="word">Aestus</span>
+  <span class="chip">$AESTUS</span>
+  <span class="spacer"></span>
+  <nav>
+    <a href="terminal.html">Terminal</a>
+    <a href="#token" class="hide-sm">Token</a>
     <a href="#" aria-disabled="true" id="link-x">X · TBA</a>
-    <a href="#" aria-disabled="true" id="link-github">GitHub · TBA</a>
-    <a href="mailto:research@aestus.fun">Contact</a>
+    <a href="#" aria-disabled="true" id="link-github" class="hide-sm">GitHub · TBA</a>
+  </nav>
+  <span class="meta mono hide-sm">CA · TBA</span>
+</header>
+
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <p class="hero-kicker">Whitepaper · draft v0.1 · July 2026</p>
+      <h1>Aestus</h1>
+      <p class="tag">Measure the tide. Publish the state.</p>
+      <p class="support">
+        A research reading of the macro liquidity force that moves risk books together —
+        regime, index, and an honestly scoped community flag.
+      </p>
+    </div>
+    <aside class="hero-aside" aria-label="Launch status">
+      <div class="row"><span class="k">Ticker</span><span class="v">AESTUS</span></div>
+      <div class="row"><span class="k">CA</span><span class="v">TBA</span></div>
+      <div class="row"><span class="k">X</span><span class="v">TBA</span></div>
+      <div class="row"><span class="k">GitHub</span><span class="v">TBA</span></div>
+      <div class="row"><span class="k">Contact</span><span class="v"><a href="mailto:research@aestus.fun">research@aestus.fun</a></span></div>
+    </aside>
   </div>
-</aside>
+  <svg class="tide-svg" viewBox="0 0 1120 72" preserveAspectRatio="none" aria-hidden="true">
+    <path class="soft" d="M0 44 Q140 18 280 40 T560 36 T840 48 T1120 30"/>
+    <path class="pulse" d="M0 50 Q160 28 320 46 T640 42 T960 54 T1120 38"/>
+  </svg>
+</section>
 
-<main class="main">
-<article class="card">
-  <h1 class="doc-title">Aestus Whitepaper</h1>
-  <div class="subtitle">Measure the tide. Publish the state.</div>
-  <div class="byline">Aestus Research &middot; <a href="mailto:research@aestus.fun">research@aestus.fun</a></div>
-  <div class="docdate">Draft v0.1 — July 2026</div>
+<nav class="toc-strip" aria-label="Table of contents">
+  <div class="inner toc">
+    <a href="#intro" class="active">01 Intro</a>
+    <a href="#tide">02 Tide</a>
+    <a href="#model">03 Model</a>
+    <a href="#empirical">04 Empirical</a>
+    <a href="#oracle">05 Oracle</a>
+    <a href="#spec">06 Spec</a>
+    <a href="#usecases">07 Uses</a>
+    <a href="#security">08 Security</a>
+    <a href="#token">09 Token</a>
+    <a href="#disc">10 Disclaimer</a>
+  </div>
+</nav>
 
+<div class="sheet">
+<main class="article">
+<article>
+  <div class="doc-meta">
+    <span>Aestus Research</span>
+    <span><a href="mailto:research@aestus.fun">research@aestus.fun</a></span>
+    <span>Draft v0.1 — July 2026</span>
+  </div>
   <div class="abstract">
-    <p><span class="ab-label">Abstract. </span>
+    <p><span class="ab-label">Abstract</span>
     Markets do not live separate lives. Bitcoin, equities, gold, crude, and the dollar breathe
     to one rhythm — the expansion and contraction of global liquidity. Traders feel the
     connection as weather. Aestus treats it as a measurement problem. We estimate the
@@ -410,15 +425,28 @@ output: s_t , P_on(t)</pre>
   <div class="footer">© 2026 Aestus Research · Measure the tide. Publish the state.</div>
 </article>
 </main>
+
+<aside class="marks" aria-label="Section marks">
+  <a href="#intro" class="active">01</a>
+  <a href="#tide">02</a>
+  <a href="#model">03</a>
+  <a href="#empirical">04</a>
+  <a href="#oracle">05</a>
+  <a href="#spec">06</a>
+  <a href="#usecases">07</a>
+  <a href="#security">08</a>
+  <a href="#token">09</a>
+  <a href="#disc">10</a>
+</aside>
 </div>
 
 <script>
 (function () {
-  var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
-  var ids = links.map(function (a) { return a.getAttribute('href').slice(1); });
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc a, .marks a'));
+  var ids = ['intro','tide','model','empirical','oracle','spec','usecases','security','token','disc'];
   var sections = ids.map(function (id) { return document.getElementById(id); }).filter(Boolean);
   function sync() {
-    var y = window.scrollY + 80;
+    var y = window.scrollY + 160;
     var cur = sections[0] && sections[0].id;
     for (var i = 0; i < sections.length; i++) {
       if (sections[i].offsetTop <= y) cur = sections[i].id;
