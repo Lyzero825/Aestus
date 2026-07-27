@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aestus Whitepaper</title>
+  <meta name="description" content="Aestus — measure the liquidity tide, publish the macro state." />
+  <link rel="icon" href="assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="brand">
+    <img src="assets/logo.png" alt="Aestus seal" />
+    <span class="word">Aestus</span>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-label">Apps</div>
+    <a href="terminal.html">Aestus Terminal<svg class="ext" viewBox="0 0 7 7" fill="currentColor"><path d="M0.39 6.62C0.2 6.43 0.19 6.17 0.38 5.98L4.67 1.68L5.33 1.08L3.18 1.15H1.89C1.65 1.15 1.44 0.95 1.44 0.71C1.44 0.46 1.62 0.25 1.91 0.25H6.27C6.57 0.25 6.76 0.45 6.76 0.73V5.1C6.76 5.37 6.54 5.57 6.3 5.57C6.05 5.57 5.85 5.35 5.85 5.12V3.8L5.94 1.64L5.31 2.33L1.02 6.62C0.83 6.8 0.57 6.79 0.39 6.62Z"/></svg></a>
+  </div>
+
+  <div class="nav-group toc">
+    <div class="nav-label">Table of Contents</div>
+    <a href="#intro" class="active">1. Introduction</a>
+    <a href="#tide">2. The Macro Aestus</a>
+    <a href="#model">3. Cross-Asset Model</a>
+    <a href="#empirical">4. Empirical Results</a>
+    <a href="#oracle">5. The Aestus Oracle</a>
+    <a href="#spec">6. Specifications</a>
+    <a href="#usecases">7. Use Cases</a>
+    <a href="#security">8. Security</a>
+    <a href="#token">9. The Aestus Token</a>
+    <a href="#disc">10. Disclaimers</a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-label">Launch</div>
+    <span class="side-meta"><span class="k">Ticker</span> <span class="v mono">AESTUS</span></span>
+    <span class="side-meta"><span class="k">CA</span> <span class="v mono">TBA</span></span>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-label">Links</div>
+    <a href="#" aria-disabled="true" id="link-x">X · TBA</a>
+    <a href="#" aria-disabled="true" id="link-github">GitHub · TBA</a>
+    <a href="mailto:research@aestus.fun">Contact</a>
+  </div>
+</aside>
+
+<main class="main">
+<article class="card">
+  <h1 class="doc-title">Aestus Whitepaper</h1>
+  <div class="subtitle">Measure the tide. Publish the state.</div>
+  <div class="byline">Aestus Research &middot; <a href="mailto:research@aestus.fun">research@aestus.fun</a></div>
+  <div class="docdate">Draft v0.1 — July 2026</div>
+
+  <div class="abstract">
+    <p><span class="ab-label">Abstract. </span>
+    Markets do not live separate lives. Bitcoin, equities, gold, crude, and the dollar breathe
+    to one rhythm — the expansion and contraction of global liquidity. Traders feel the
+    connection as weather. Aestus treats it as a measurement problem. We estimate the
+    unobserved macro state from a public cross-asset panel — time-varying correlations, a
+    hidden-Markov regime model, lead-lag analysis, and a composite liquidity reading — and
+    intend to publish the result as an on-chain primitive any application can consume.
+    An optimistic-oracle design is the research path for securing that feed. This paper
+    specifies the model and the intended protocol. The Aestus token, if and when it exists as
+    a fair-launch community flag (Section 9), is kept honestly separate from the unbuilt
+    machinery.</p>
+  </div>
+  <div class="keywords"><strong>Keywords:</strong> cross-asset correlation, risk-on/risk-off,
+    regime switching, hidden Markov models, global liquidity, optimistic oracles,
+    DeFi macro primitives.</div>
+
+  <span class="emblem"><img src="assets/logo.png" alt="" /></span>
+
+  <h2 id="intro">1. Introduction</h2>
+  <p>
+    Open a feed and it looks like noise. One day Bitcoin leads; the next, gold; equities sell
+    while crude tells its own story. Asset by asset, the books seem independent. They are not.
+    Under the surface, the same hand moves them.
+  </p>
+  <p>
+    That hand is liquidity — the looseness or tightness of money, shaped by the dollar, real
+    yields, and central-bank balance sheets. When the tap opens, risk rises together. When it
+    closes, capital retreats into safety. The mutual balancing every macro observer senses is
+    not mysticism. It is a switch, statistical and time-varying.
+  </p>
+  <p>
+    Something about treating that switch as story always bothered me. So I started asking a
+    different question: can the unobserved macro state be measured from public data and
+    published as a scalar anyone can consume — without pretending to forecast prices or
+    control markets?
+  </p>
+  <p>
+    <strong>Aestus</strong> is the answer I kept arriving at. Named for the Latin tide and
+    surge, it does for global risk what a tide gauge does for water: read how high the water
+    is, and whether it is coming in or going out. The reading is the product.
+  </p>
+
+  <h3>1.1 Why on-chain</h3>
+  <p>
+    DeFi has excellent price oracles and almost no macro oracle. A lending market can price ETH
+    to eight decimals and still have no notion of whether the whole field is risk-seeking or
+    risk-averse — the latent variable that governs correlation, volatility, and tail risk across
+    collateral at once. In a risk-off cascade, “uncorrelated” books become one book. A
+    trustworthy on-chain macro reading is not a convenience. It is a missing safety primitive.
+  </p>
+
+  <h3>1.2 Contributions</h3>
+  <ul>
+    <li>A layered <strong>cross-asset macro model</strong> that outputs a discrete regime, a
+      continuous liquidity index, and a sensitivity decomposition from public data.</li>
+    <li>A <strong>staked optimistic oracle</strong> design (research vision) for bringing that
+      output on-chain with a dispute path.</li>
+    <li>An honestly scoped <strong>community flag</strong> — Section 9 states what the token is
+      and is not, separate from unbuilt protocol ambitions.</li>
+    <li>A staged path from a single signed reporter toward multi-operator consensus.</li>
+  </ul>
+
+  <h2 id="tide">2. The Macro Aestus</h2>
+  <p>
+    Model the global market as one body of water. A single tide — liquidity — raises and lowers
+    the fleet. On top of the tide, currents create relative motion: gold against Bitcoin, a
+    strong dollar dragging risk down, oil tracking growth and geopolitics. Three layers:
+  </p>
+  <ul>
+    <li><strong>Gravity (liquidity).</strong> Dollar index, real yield, balance-sheet proxies —
+      the slow common force.</li>
+    <li><strong>Switch (regime).</strong> Risk-on / neutral / risk-off — the medium-frequency
+      rotation of capital between risk and safety.</li>
+    <li><strong>Character (residual).</strong> What remains after gravity and regime are removed —
+      each asset’s temperament.</li>
+  </ul>
+  <div class="callout">
+    In one line: <strong>every asset is first pushed by the same liquidity tide, then rotated by
+    a risk switch; only what remains is its own character.</strong> Aestus estimates the first
+    two layers and reports them.
+  </div>
+
+  <h3>2.1 Notation</h3>
+  <p>
+    Let the panel contain <em>N</em> assets with log returns
+    <em>r<sub>i,t</sub></em>. Macro drivers (DXY, real yield, liquidity proxy) sit in
+    <em>m<sub>t</sub></em>. The unobserved regime is
+    <em>s<sub>t</sub></em> ∈ {1,…,K}. Headline outputs: regime label <em>s<sub>t</sub></em>,
+    risk-on probability <em>P</em><sub>on</sub>(<em>t</em>), and the
+    <strong>Macro Aestus Index</strong> <em>T</em>(<em>t</em>) ∈ [0, 100].
+  </p>
+
+  <h2 id="model">3. Cross-Asset Model</h2>
+  <p>
+    The model is a layered pipeline. Each layer is independently testable; together they yield
+    the regime, the lead-lag map, and the composite index.
+  </p>
+
+  <div class="flow">
+    <div class="flow-node"><div class="lbl">0 · Data</div><div class="ln">align public feeds</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node"><div class="lbl">1 · Stats</div><div class="ln">GARCH · DCC ρ</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node"><div class="lbl">2–4</div><div class="ln">HMM · lead-lag · MST</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node"><div class="lbl">5 · Index</div><div class="ln mono">T(t) ∈ [0,100]</div></div>
+  </div>
+
+  <h3>3.1 Data</h3>
+  <table>
+    <thead><tr><th>Class</th><th>Instrument</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Crypto</td><td>BTC, ETH, total mcap</td><td>Public exchange / on-chain APIs</td></tr>
+      <tr><td>Equity</td><td>S&amp;P 500, Nasdaq, KOSPI, VIX</td><td>Public market data</td></tr>
+      <tr><td>Commodity</td><td>Gold, WTI</td><td>Public feeds / FRED</td></tr>
+      <tr><td>Macro</td><td>USD index, 10y real yield, CB balance sheet</td><td>FRED</td></tr>
+    </tbody>
+  </table>
+  <p>
+    The engineering problem is temporal alignment: crypto never sleeps; equities and macro
+    observe sessions. We resample to a common daily grid, flag stale observations, and compute
+    returns only over genuine trading transitions. Inputs are content-addressed so a given
+    index value is reproducible from a fixed set.
+  </p>
+
+  <h3>3.2 Time-varying correlation</h3>
+  <p>
+    The “balancing” is the time variation of the correlation matrix <em>R<sub>t</sub></em>.
+    Static correlations lie. We estimate conditional volatilities with univariate GARCH(1,1)
+    and conditional correlation with DCC:
+  </p>
+  <div class="eq">
+    Q<sub>t</sub> = (1 − a − b) Q̄ + a (ε<sub>t−1</sub> ε<sub>t−1</sub><sup>⊤</sup>) + b Q<sub>t−1</sub>
+    <span class="num">(1)</span>
+  </div>
+  <p>
+    Mean pairwise correlation ρ̄(<em>t</em>) is one of the strongest single stress indicators:
+    it rises toward one when the market sells as a bloc.
+  </p>
+
+  <div class="figure">
+    <div class="frame">
+      <img src="assets/heatmap.png" width="420" height="320" alt="Illustrative correlation heatmap" style="width:100%;max-width:440px;height:auto;display:block;margin:0 auto" />
+    </div>
+    <div class="figcaption">Figure 1. Illustrative DCC-style correlation snapshot. Warm cells =
+      co-movement; cool cells = hedges. Sample only — not live data.</div>
+  </div>
+
+  <h3>3.3 Regime detection</h3>
+  <p>
+    Risk regime is the hidden state of a <em>K</em>-state HMM on joint returns and volatility.
+    States emit characteristic signatures modelled as multivariate Gaussians; parameters via
+    Baum–Welch; path via Viterbi. Default <em>K</em> = 3 — risk-on, neutral, risk-off —
+    labeled post hoc by volatility and mean-correlation.
+  </p>
+  <div class="eq">
+    P(s<sub>t</sub> = j | s<sub>t−1</sub> = i) = A<sub>ij</sub> ,&nbsp;
+    r<sub>t</sub> | s<sub>t</sub> = s ~ 𝒩(μ<sub>s</sub>, Σ<sub>s</sub>)
+    <span class="num">(2)</span>
+  </div>
+  <div class="algo">
+    <div class="algo-title">Algorithm 1 — Regime estimation (per period)</div>
+    <pre>input : window of aligned returns R
+1  GARCH residuals → DCC R_t                         # eq. (1)
+2  features X_t ← [r_t, vol_t, mean_corr(R_t)]
+3  θ ← BaumWelch(X_window, K)
+4  γ_t ← Forward-Backward P(s_t | X)
+5  s_t ← argmax γ_t ;  P_on(t) ← γ_t[risk-on]
+output: s_t , P_on(t)</pre>
+  </div>
+
+  <h3>3.4 Lead-lag</h3>
+  <p>
+    Directional flow via Granger causality and transfer entropy. Aggregated across the panel,
+    this yields a directed graph — who leads whom — that correlation alone cannot give.
+  </p>
+  <div class="eq">
+    T<sub>Y→X</sub> = Σ p(x<sub>t+1</sub>, x<sub>t</sub>, y<sub>t</sub>) · log
+    [ p(x<sub>t+1</sub>|x<sub>t</sub>,y<sub>t</sub>) / p(x<sub>t+1</sub>|x<sub>t</sub>) ]
+    <span class="num">(3)</span>
+  </div>
+
+  <h3>3.5 The Macro Aestus Index</h3>
+  <p>
+    Headline scalar <em>T</em>(<em>t</em>) combines slow liquidity gravity with medium-frequency
+    regime probability. Before normalization:
+  </p>
+  <div class="eq">
+    T̃(t) = α·L(t) − β·Y<sub>real</sub>(t) − γ·DXY(t) + δ·P<sub>on</sub>(t)
+    <span class="num">(4)</span>
+  </div>
+  <div class="eq">
+    T(t) = 100 · Φ<sub>rank</sub>( T̃(t) ; window )
+    <span class="num">(5)</span>
+  </div>
+  <p>
+    So <em>T</em> ∈ [0, 100] reads as a tide gauge. High: abundant liquidity and risk appetite.
+    Low: draining tide and flight to safety. Weights are fixed by published methodology and
+    changed only under versioned governance with a timelock — when that governance exists.
+  </p>
+
+  <h2 id="empirical">4. Empirical Results</h2>
+  <p>
+    Backtests on a multi-year daily panel show the expected signatures: mean pairwise
+    correlation spikes in risk-off windows; the decoded HMM states align with known stress
+    episodes; β-to-ΔT ranks risk assets above hedges. Figures in the Terminal are
+    <strong>illustrative samples</strong>, not a claim of live production telemetry.
+  </p>
+  <p>
+    Live data at genesis. Until then, treat every chart on this site as a map of the method —
+    not the territory of a running feed.
+  </p>
+
+  <h2 id="oracle">5. The Aestus Oracle</h2>
+  <p>
+    Price oracles already exist. Aestus needs a different object: a slowly moving macro state
+    that must be hard to game and easy to dispute. The intended design is a staked optimistic
+    oracle — operators post a signed report; a challenge window opens; bonded challengers can
+    force a dispute game.
+  </p>
+  <div class="callout">
+    Let me be plain: Section 5 is a <strong>research vision</strong>. It describes what the
+    network could become. It is not a representation that any on-chain contract is live, nor
+    that any token already carries staking, slashing, or governance rights.
+  </div>
+
+  <h3>5.1 Report shape</h3>
+  <pre>{ regime, index T, P_on, input_hash, methodology_version, sig }</pre>
+  <p>
+    Consumers pin a methodology version. Changing the model is not a silent edit; it is a
+    version bump with a timelock once governance exists.
+  </p>
+
+  <h3>5.2 Staging</h3>
+  <ol>
+    <li>Single signed reporter + public reproducibility of inputs.</li>
+    <li>Multi-operator median with deviation penalties.</li>
+    <li>Toward verifiable computation where the economics justify it.</li>
+  </ol>
+
+  <h2 id="spec">6. Specifications</h2>
+  <table>
+    <thead><tr><th>Item</th><th>Spec</th></tr></thead>
+    <tbody>
+      <tr><td>Index range</td><td><span class="mono">T ∈ [0, 100]</span> rolling percentile</td></tr>
+      <tr><td>Regimes</td><td>K = 3 · risk-on / neutral / risk-off</td></tr>
+      <tr><td>Cadence (intended)</td><td>Daily epoch · challenge window hours-scale</td></tr>
+      <tr><td>Settlement (intended)</td><td>L2 · contract TBA</td></tr>
+      <tr><td>Inputs</td><td>Public market + macro only</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="usecases">7. Use Cases</h2>
+  <ul>
+    <li><strong>Risk engines</strong> — collateral haircuts that widen when T drains and ρ̄ spikes.</li>
+    <li><strong>Vaults / perps</strong> — regime-aware leverage caps without inventing a price.</li>
+    <li><strong>Analytics</strong> — Terminal and explorers as the public face of the reading.</li>
+    <li><strong>Research</strong> — open methodology so the idea can be judged on merits.</li>
+  </ul>
+
+  <h2 id="security">8. Security</h2>
+  <p>
+    Threats worth naming: poisoned inputs, operator collusion, model risk, oracle latency.
+    Mitigations in the vision: content-addressed inputs, stake-weighted median, open dispute
+    game, versioned methodology, and the admission that macro state is a slow variable — not a
+    high-frequency price.
+  </p>
+  <p>
+    No design removes model risk. Open methods and pinned versions are how consumers choose
+    what to trust.
+  </p>
+
+  <h2 id="token">9. The Aestus Token</h2>
+  <p>
+    This section states plainly what the token is, why it would exist, and what it is not.
+    We would rather be explicit and unexciting here than leave a gap for assumptions.
+  </p>
+
+  <div class="honesty">
+    <h4>What it is — and is not</h4>
+    <p>
+      <strong>It is</strong> a community flag and a signal: a way for people who share the
+      thesis to find each other, and a marker of being early to it.
+    </p>
+    <p>
+      <strong>It is not</strong> a security, a share of any entity, a claim on revenue, or a
+      promise of price appreciation. It does not entitle holders to any future token, airdrop,
+      or 1:1 migration. We make no such commitment.
+    </p>
+  </div>
+
+  <h3>9.1 Fair launch (intent)</h3>
+  <table>
+    <thead><tr><th>Field</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>Ticker</td><td><span class="mono">AESTUS</span></td></tr>
+      <tr><td>Name</td><td>Aestus</td></tr>
+      <tr><td>Contract (CA)</td><td><span class="mono" id="ca-value">TBA</span></td></tr>
+      <tr><td>GitHub</td><td><span id="github-value">TBA</span></td></tr>
+      <tr><td>Allocation</td><td>Fair launch · no private round · no team pre-mine</td></tr>
+    </tbody>
+  </table>
+  <p>
+    Aestus should enter the same way the research is meant to live: permissionless, no private
+    allocation, no venture pre-mine, no insider supply set aside. Contract address, X handle,
+    and GitHub are <strong>placeholders on this page</strong> until they exist. We will not
+    invent a CA here.
+  </p>
+
+  <h3>9.2 Relationship to the protocol</h3>
+  <p>
+    The staking, slashing, and governance mechanics in Section 5 are a research vision for what
+    the network could one day become — not a representation that a fair-launch community token
+    already possesses those mechanics, nor a promise that it will. Treat them as direction, not
+    entitlement. Brand layer · not wired to the math.
+  </p>
+
+  <h3>9.3 True shape of the thing</h3>
+  <p>
+    Launch-first is allowed to be unfinished. Early holders, if any, are first mass in the field —
+    first observers of a thesis — not spectators of a finished protocol. The Terminal on this
+    site is a sample map. The territory is still being surveyed.
+  </p>
+
+  <h2 id="disc">10. Disclaimers</h2>
+  <p>
+    Aestus is a research project under active development. The model describes statistical
+    relationships, not certainties: correlation is not causation, and past behavior does not
+    guarantee future results. Nothing here is financial, investment, or legal advice, nor an
+    offer to buy or sell any security or token. All figures and tables are illustrative unless
+    and until a live feed is explicitly labeled otherwise. Forward-looking statements about
+    protocol direction are subject to change.
+  </p>
+  <p>
+    <strong>Reproducibility.</strong> Reference implementation, data manifests, and notebooks
+    are intended for open release alongside a stable methodology version.
+  </p>
+
+  <div class="footnote">
+    <p>Acknowledgments. This work sits on macro-finance literature on risk-on/risk-off and
+      regime switching, and on decentralized-oracle designs that pioneered economically secured
+      off-chain data on-chain.</p>
+  </div>
+
+  <div class="footer">© 2026 Aestus Research · Measure the tide. Publish the state.</div>
+</article>
+</main>
+</div>
+
+<script>
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+  var ids = links.map(function (a) { return a.getAttribute('href').slice(1); });
+  var sections = ids.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  function sync() {
+    var y = window.scrollY + 80;
+    var cur = sections[0] && sections[0].id;
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].offsetTop <= y) cur = sections[i].id;
+    }
+    links.forEach(function (a) {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+    });
+  }
+  window.addEventListener('scroll', sync, { passive: true });
+  sync();
+})();
+</script>
+</body>
+</html>

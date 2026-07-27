@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aestus Terminal</title>
+  <meta name="description" content="Aestus Terminal — sample reading of the Macro Aestus Index." />
+  <link rel="icon" href="assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="topbar">
+  <img src="assets/logo.png" alt="Aestus" />
+  <span class="name">Aestus</span>
+  <span class="badge">SAMPLE · not a live feed</span>
+  <span class="meta mono" style="margin-left:4px">$AESTUS</span>
+  <span class="spacer"></span>
+  <span class="meta">CA · TBA</span>
+  <span class="meta" style="margin-left:10px">illustrative · draft panel</span>
+  <a href="index.html" style="font-size:13px;color:var(--muted);margin-left:12px">← Whitepaper</a>
+</div>
+
+<nav class="tabs" aria-label="Terminal views">
+  <a href="#terminal" data-tab="terminal" class="active">Terminal</a>
+  <a href="#regime" data-tab="regime">Regime Explorer</a>
+  <a href="#oracle" data-tab="oracle">Oracle Dashboard</a>
+</nav>
+
+<div class="wrap">
+  <section class="view active" id="view-terminal">
+    <div class="grid row12">
+      <div class="tcard gaugewrap">
+        <h2 style="align-self:flex-start">Macro Aestus Index</h2>
+        <svg viewBox="0 0 320 196" style="width:100%;max-width:340px" aria-label="Sample index gauge">
+          <defs>
+            <linearGradient id="g" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#d46a8a"/>
+              <stop offset="0.5" stop-color="#6a9fd4"/>
+              <stop offset="1" stop-color="#5dbb72"/>
+            </linearGradient>
+          </defs>
+          <path d="M45 168 A 115 115 0 0 1 275 168" fill="none" stroke="#23262e" stroke-width="16" stroke-linecap="round"/>
+          <path id="gaugeArc" d="M45 168 A 115 115 0 0 1 275 168" fill="none" stroke="url(#g)" stroke-width="16" stroke-linecap="round" stroke-dasharray="226 1000"/>
+          <text x="160" y="148" text-anchor="middle" font-family="Source Serif 4,serif" font-size="48" font-weight="600" fill="#a9cfee">62.4</text>
+          <text x="160" y="172" text-anchor="middle" font-size="11.5" fill="#8f8a80">sample reading</text>
+          <text x="40" y="190" text-anchor="middle" font-size="11" fill="#6a665c">0</text>
+          <text x="280" y="190" text-anchor="middle" font-size="11" fill="#6a665c">100</text>
+        </svg>
+        <div class="regime-tag">Risk-On · sample</div>
+      </div>
+      <div class="tcard">
+        <h2>Regime probability</h2>
+        <div class="sub">decoded from the cross-asset panel · illustrative</div>
+        <div class="regime-pill-row">
+          <div class="pill cur">Risk-On<div class="prob"><i style="width:58%"></i></div><div class="mono" style="font-size:11px;margin-top:4px;color:var(--muted)">0.58</div></div>
+          <div class="pill">Neutral<div class="prob"><i style="width:27%"></i></div><div class="mono" style="font-size:11px;margin-top:4px;color:var(--muted)">0.27</div></div>
+          <div class="pill">Risk-Off<div class="prob"><i style="width:15%"></i></div><div class="mono" style="font-size:11px;margin-top:4px;color:var(--muted)">0.15</div></div>
+        </div>
+        <h2 style="margin-top:22px">Liquidity drivers</h2>
+        <div class="drv"><span class="k">USD (DXY)</span><span class="v" style="color:var(--off)">−0.4σ</span></div>
+        <div class="drv"><span class="k">10y real yield</span><span class="v" style="color:var(--warn)">+0.1σ</span></div>
+        <div class="drv"><span class="k">Liquidity proxy L</span><span class="v" style="color:var(--green)">+0.6σ</span></div>
+        <div class="drv"><span class="k">Mean pairwise ρ̄</span><span class="v">0.41</span></div>
+      </div>
+    </div>
+
+    <div class="tcard" style="margin-top:16px">
+      <h2>Macro Aestus Index — trailing window</h2>
+      <div class="sub">shaded bands = decoded regime · solid = index · dashed = mean ρ̄ · sample series</div>
+      <svg class="sample-chart" viewBox="0 0 720 180" aria-hidden="true">
+        <rect x="0" y="0" width="180" height="180" fill="#0e1a14" opacity="0.45"/>
+        <rect x="180" y="0" width="120" height="180" fill="#161208" opacity="0.35"/>
+        <rect x="300" y="0" width="220" height="180" fill="#0e1a14" opacity="0.45"/>
+        <rect x="520" y="0" width="100" height="180" fill="#1a0e14" opacity="0.4"/>
+        <rect x="620" y="0" width="100" height="180" fill="#0e1a14" opacity="0.45"/>
+        <polyline fill="none" stroke="#5eb8a8" stroke-width="2.2"
+          points="20,120 60,110 100,95 140,100 180,88 220,105 260,112 300,90 340,78 380,70 420,75 460,68 500,80 540,110 580,125 620,95 680,72"/>
+        <polyline fill="none" stroke="#6a9fd4" stroke-width="1.4" stroke-dasharray="5 4"
+          points="20,130 60,128 100,118 140,122 180,115 220,125 260,130 300,120 340,112 380,108 420,110 460,105 500,112 540,128 580,135 620,120 680,108"/>
+      </svg>
+      <div class="note">Illustrative sample. Live data at genesis.</div>
+    </div>
+
+    <div class="grid row2" style="margin-top:16px">
+      <div class="tcard">
+        <h2>Conditional correlation</h2>
+        <div class="sub">trailing-window correlation across the panel</div>
+        <img class="heatimg" src="assets/heatmap.png" width="420" height="320" alt="Illustrative correlation heatmap" />
+      </div>
+      <div class="tcard">
+        <h2>Sensitivity to the tide (β)</h2>
+        <div class="sub">per-asset beta to Δindex · sample · SPX = 1</div>
+        <table>
+          <thead><tr><th>Asset</th><th style="text-align:right">β</th></tr></thead>
+          <tbody>
+            <tr><td>NDX</td><td class="mono" style="text-align:right">1.18</td></tr>
+            <tr><td>BTC</td><td class="mono" style="text-align:right">1.42</td></tr>
+            <tr><td>ETH</td><td class="mono" style="text-align:right">1.51</td></tr>
+            <tr><td>SPX</td><td class="mono" style="text-align:right">1.00</td></tr>
+            <tr><td>Gold</td><td class="mono" style="text-align:right">−0.22</td></tr>
+            <tr><td>DXY</td><td class="mono" style="text-align:right">−0.61</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-regime">
+    <div class="grid row12">
+      <div class="tcard">
+        <h2>Hidden Markov regime model</h2>
+        <div class="sub">3 latent states · illustrative topology</div>
+        <svg viewBox="0 0 360 180" style="width:100%;height:auto;display:block">
+          <circle cx="55" cy="95" r="34" fill="#0e1a14" stroke="#5dbb72" stroke-width="1.5"/>
+          <text x="55" y="92" text-anchor="middle" fill="#e9efe9" font-size="12" font-weight="600">Risk-On</text>
+          <text x="55" y="108" text-anchor="middle" fill="#7e8a7e" font-size="9">low ρ̄</text>
+          <circle cx="180" cy="95" r="34" fill="#161208" stroke="#c9a227" stroke-width="1.5"/>
+          <text x="180" y="92" text-anchor="middle" fill="#efe9e0" font-size="12" font-weight="600">Neutral</text>
+          <text x="180" y="108" text-anchor="middle" fill="#8b8275" font-size="9">mid ρ̄</text>
+          <circle cx="305" cy="95" r="34" fill="#1a0e14" stroke="#d46a8a" stroke-width="1.5"/>
+          <text x="305" y="92" text-anchor="middle" fill="#fbe7ee" font-size="12" font-weight="600">Risk-Off</text>
+          <text x="305" y="108" text-anchor="middle" fill="#d68aa0" font-size="9">ρ̄ → 1</text>
+          <path d="M90 85 Q120 60 145 85" fill="none" stroke="#6a9fd4" stroke-width="1.2"/>
+          <path d="M215 85 Q250 60 270 85" fill="none" stroke="#6a9fd4" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div class="tcard">
+        <h2>Transition matrix A · sample</h2>
+        <div class="sub">P(s<sub>t</sub> | s<sub>t−1</sub>) — illustrative</div>
+        <table>
+          <thead><tr><th></th><th>On</th><th>Neu</th><th>Off</th></tr></thead>
+          <tbody>
+            <tr><td>On</td><td class="mono">0.94</td><td class="mono">0.05</td><td class="mono">0.01</td></tr>
+            <tr><td>Neu</td><td class="mono">0.06</td><td class="mono">0.88</td><td class="mono">0.06</td></tr>
+            <tr><td>Off</td><td class="mono">0.02</td><td class="mono">0.16</td><td class="mono">0.82</td></tr>
+          </tbody>
+        </table>
+        <div class="note">Sample persistence. Not estimated from a live window on this page.</div>
+      </div>
+    </div>
+    <div class="tcard" style="margin-top:16px">
+      <h2>Regime statistics · sample</h2>
+      <table>
+        <thead><tr><th>Regime</th><th style="text-align:right">Mean ρ̄</th><th style="text-align:right">Ann. vol</th><th style="text-align:right">Share</th></tr></thead>
+        <tbody>
+          <tr><td>Risk-On</td><td class="mono" style="text-align:right">0.32</td><td class="mono" style="text-align:right">12%</td><td class="mono" style="text-align:right">48%</td></tr>
+          <tr><td>Neutral</td><td class="mono" style="text-align:right">0.45</td><td class="mono" style="text-align:right">16%</td><td class="mono" style="text-align:right">34%</td></tr>
+          <tr><td>Risk-Off</td><td class="mono" style="text-align:right">0.78</td><td class="mono" style="text-align:right">28%</td><td class="mono" style="text-align:right">18%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="view" id="view-oracle">
+    <div class="grid row12">
+      <div class="tcard">
+        <h2>Latest report · sample</h2>
+        <div class="sub">model output shape for one epoch</div>
+        <div class="kv"><span class="k">Regime</span><span class="v">Risk-On</span></div>
+        <div class="kv"><span class="k">Index T</span><span class="v">62.4</span></div>
+        <div class="kv"><span class="k">P(on)</span><span class="v">0.58</span></div>
+        <div class="kv"><span class="k">Methodology</span><span class="v">v0.1-draft</span></div>
+        <div class="kv"><span class="k">Input hash</span><span class="v">0xsample…</span></div>
+        <div class="note">On-chain contract is <strong>not deployed</strong>. Operator fields are placeholders.</div>
+      </div>
+      <div class="tcard">
+        <h2>Oracle parameters · research vision</h2>
+        <div class="sub">direction, not entitlement</div>
+        <div class="kv"><span class="k">Settlement chain</span><span class="v">L2 · TBA</span></div>
+        <div class="kv"><span class="k">Contract</span><span class="v">not deployed</span></div>
+        <div class="kv"><span class="k">Reporting epoch</span><span class="v">1 day</span></div>
+        <div class="kv"><span class="k">Challenge window</span><span class="v">hours-scale</span></div>
+        <div class="kv"><span class="k">Operators</span><span class="v">1 (intended first stage)</span></div>
+        <div class="kv"><span class="k">Verification</span><span class="v">optimistic</span></div>
+      </div>
+    </div>
+    <div class="tcard" style="margin-top:16px">
+      <h2>Pipeline</h2>
+      <div class="sub">how a report would reach the chain — when built</div>
+      <div class="flow">
+        <div class="flow-node"><div class="lbl">Off-chain</div><div class="ln">data pipeline</div><div class="ln">model engine</div><div class="ln">operator node</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node"><div class="lbl">Bridge</div><div class="ln">signed report</div><div class="ln mono">{regime, T, hash, sig}</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node"><div class="lbl">On-chain · L2</div><div class="ln mono">AestusOracle.sol</div><div class="ln">store · challenge · finalize</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="foot">
+    Sample telemetry only — not a live feed.
+    <span class="mono">$AESTUS</span> · CA TBA · GitHub TBA.
+    Token and oracle staking described in the whitepaper are a brand / research layer,
+    not wired to this page. See <a href="index.html#token">§9 The Aestus Token</a>.
+    Not financial advice.
+  </div>
+</div>
+
+<script>
+(function () {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tabs a'));
+  var views = {
+    terminal: document.getElementById('view-terminal'),
+    regime: document.getElementById('view-regime'),
+    oracle: document.getElementById('view-oracle')
+  };
+  function show(name) {
+    Object.keys(views).forEach(function (k) {
+      views[k].classList.toggle('active', k === name);
+    });
+    tabs.forEach(function (a) {
+      a.classList.toggle('active', a.getAttribute('data-tab') === name);
+    });
+  }
+  tabs.forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      show(a.getAttribute('data-tab'));
+      history.replaceState(null, '', '#' + a.getAttribute('data-tab'));
+    });
+  });
+  var hash = (location.hash || '#terminal').slice(1);
+  if (!views[hash]) hash = 'terminal';
+  show(hash);
+})();
+</script>
+</body>
+</html>
