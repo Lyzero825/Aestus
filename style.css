@@ -1,14 +1,15 @@
 :root {
   --bg: #07140e;
   --bg-2: #0c1c14;
-  /* Text greens locked to Robinhood lime extracted from reference (#ccff02) */
-  --ink: #ccff02;
-  --head: #ccff02;
-  --muted: #b8e602;
-  --faint: #9ecc00;
+  /* Body text: original palette. Accents: Robinhood lime (#ccff02). */
+  --ink: #e4ebe4;
+  --head: #f2f7f2;
+  --muted: #8a9a8c;
+  --faint: #5c6b5e;
   --rule: #1c2e22;
   --tide: #ccff02;
   --tide-bright: #ccff02;
+  --section: #ccff02; /* same lime as tagline */
   --sand: #ccff02;
   --link: #ccff02;
   --panel: #0c1a12;
@@ -296,7 +297,7 @@ h2 {
   line-height: 1.2;
   margin: 52px 0 16px;
   scroll-margin-top: 140px;
-  color: var(--head);
+  color: var(--section);
   padding-top: 8px;
   border-top: 1px solid var(--rule);
 }
@@ -308,7 +309,7 @@ h3 {
   letter-spacing: 0.02em;
   margin: 28px 0 10px;
   scroll-margin-top: 140px;
-  color: var(--sand);
+  color: var(--section);
 }
 p { margin: 0 0 16px; }
 ul, ol { margin: 0 0 16px; padding-left: 22px; }
