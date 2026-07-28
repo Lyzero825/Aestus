@@ -1,8 +1,8 @@
-# Aestus
+# Aequor
 
 **Measure the tide. Publish the state.**
 
-Research-flag site for a macro liquidity reading: Macro Aestus Index + regime from a public cross-asset panel.
+Research-flag site for a macro liquidity reading: Macro Aequor Index + regime from a public cross-asset panel.
 
 ## Open locally
 
@@ -18,7 +18,7 @@ Then open `http://127.0.0.1:8877/`
 
 ## Token
 
-- Ticker: `AESTUS`
+- Ticker: `AEQUOR`
 - CA / X / GitHub: TBA on the site until filled
 
 Token = community flag · not protocol equity. See whitepaper §9.

@@ -1,17 +1,18 @@
 :root {
   --bg: #07140e;
   --bg-2: #0c1c14;
-  --ink: #e4ebe4;
-  --head: #f2f7f2;
-  --muted: #8a9a8c;
-  --faint: #5c6b5e;
+  /* Text greens locked to Robinhood lime extracted from reference (#ccff02) */
+  --ink: #ccff02;
+  --head: #ccff02;
+  --muted: #b8e602;
+  --faint: #9ecc00;
   --rule: #1c2e22;
-  --tide: #2f9e5a;
-  --tide-bright: #5ec47a;
-  --sand: #9cbc7a;
-  --link: #6fd98a;
+  --tide: #ccff02;
+  --tide-bright: #ccff02;
+  --sand: #ccff02;
+  --link: #ccff02;
   --panel: #0c1a12;
-  --green: #5dbb72;
+  --green: #ccff02;
   --warn: #c4b06a;
   --off: #d46a8a;
   --bar-h: 64px;
@@ -344,7 +345,7 @@ pre, .algo {
   font-family: "IBM Plex Mono", monospace;
   font-size: 12.5px;
   line-height: 1.55;
-  color: #c5d0d4;
+  color: var(--ink);
 }
 pre { padding: 14px 16px; overflow-x: auto; }
 .algo .algo-title {

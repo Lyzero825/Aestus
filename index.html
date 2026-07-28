@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Aestus Whitepaper</title>
-  <meta name="description" content="Aestus — measure the liquidity tide, publish the macro state." />
+  <title>Aequor Whitepaper</title>
+  <meta name="description" content="Aequor — measure the liquidity tide, publish the macro state." />
   <link rel="icon" href="assets/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
@@ -16,9 +16,9 @@
 </head>
 <body>
 <header class="site-bar">
-  <img src="assets/logo.png" alt="Aestus seal" />
-  <span class="word">Aestus</span>
-  <span class="chip">$AESTUS</span>
+  <img src="assets/logo.png" alt="Aequor seal" />
+  <span class="word">Aequor</span>
+  <span class="chip">$AEQUOR</span>
   <span class="spacer"></span>
   <nav>
     <a href="terminal.html">Terminal</a>
@@ -33,7 +33,7 @@
   <div class="hero-grid">
     <div>
       <p class="hero-kicker">Whitepaper · draft v0.1 · July 2026</p>
-      <h1>Aestus</h1>
+      <h1>Aequor</h1>
       <p class="tag">Measure the tide. Publish the state.</p>
       <p class="support">
         A research reading of the macro liquidity force that moves risk books together —
@@ -41,11 +41,11 @@
       </p>
     </div>
     <aside class="hero-aside" aria-label="Launch status">
-      <div class="row"><span class="k">Ticker</span><span class="v">AESTUS</span></div>
+      <div class="row"><span class="k">Ticker</span><span class="v">AEQUOR</span></div>
       <div class="row"><span class="k">CA</span><span class="v">TBA</span></div>
       <div class="row"><span class="k">X</span><span class="v">TBA</span></div>
       <div class="row"><span class="k">GitHub</span><span class="v">TBA</span></div>
-      <div class="row"><span class="k">Contact</span><span class="v"><a href="mailto:research@aestus.fun">research@aestus.fun</a></span></div>
+      <div class="row"><span class="k">Contact</span><span class="v"><a href="mailto:research@aequor.fun">research@aequor.fun</a></span></div>
     </aside>
   </div>
   <svg class="tide-svg" viewBox="0 0 1120 72" preserveAspectRatio="none" aria-hidden="true">
@@ -73,20 +73,20 @@
 <main class="article">
 <article>
   <div class="doc-meta">
-    <span>Aestus Research</span>
-    <span><a href="mailto:research@aestus.fun">research@aestus.fun</a></span>
+    <span>Aequor Research</span>
+    <span><a href="mailto:research@aequor.fun">research@aequor.fun</a></span>
     <span>Draft v0.1 — July 2026</span>
   </div>
   <div class="abstract">
     <p><span class="ab-label">Abstract</span>
     Markets do not live separate lives. Bitcoin, equities, gold, crude, and the dollar breathe
     to one rhythm — the expansion and contraction of global liquidity. Traders feel the
-    connection as weather. Aestus treats it as a measurement problem. We estimate the
+    connection as weather. Aequor treats it as a measurement problem. We estimate the
     unobserved macro state from a public cross-asset panel — time-varying correlations, a
     hidden-Markov regime model, lead-lag analysis, and a composite liquidity reading — and
     intend to publish the result as an on-chain primitive any application can consume.
     An optimistic-oracle design is the research path for securing that feed. This paper
-    specifies the model and the intended protocol. The Aestus token, if and when it exists as
+    specifies the model and the intended protocol. The Aequor token, if and when it exists as
     a fair-launch community flag (Section 9), is kept honestly separate from the unbuilt
     machinery.</p>
   </div>
@@ -115,8 +115,7 @@
     control markets?
   </p>
   <p>
-    <strong>Aestus</strong> is the answer I kept arriving at. Named for the Latin tide and
-    surge, it does for global risk what a tide gauge does for water: read how high the water
+    <strong>Aequor</strong> is the answer I kept arriving at. Named for the Latin open sea — the level expanse of water — it does for global risk what a tide gauge does for water: read how high the water
     is, and whether it is coming in or going out. The reading is the product.
   </p>
 
@@ -140,7 +139,7 @@
     <li>A staged path from a single signed reporter toward multi-operator consensus.</li>
   </ul>
 
-  <h2 id="tide">2. The Macro Aestus</h2>
+  <h2 id="tide">2. The Macro Aequor</h2>
   <p>
     Model the global market as one body of water. A single tide — liquidity — raises and lowers
     the fleet. On top of the tide, currents create relative motion: gold against Bitcoin, a
@@ -156,7 +155,7 @@
   </ul>
   <div class="callout">
     In one line: <strong>every asset is first pushed by the same liquidity tide, then rotated by
-    a risk switch; only what remains is its own character.</strong> Aestus estimates the first
+    a risk switch; only what remains is its own character.</strong> Aequor estimates the first
     two layers and reports them.
   </div>
 
@@ -167,7 +166,7 @@
     <em>m<sub>t</sub></em>. The unobserved regime is
     <em>s<sub>t</sub></em> ∈ {1,…,K}. Headline outputs: regime label <em>s<sub>t</sub></em>,
     risk-on probability <em>P</em><sub>on</sub>(<em>t</em>), and the
-    <strong>Macro Aestus Index</strong> <em>T</em>(<em>t</em>) ∈ [0, 100].
+    <strong>Macro Aequor Index</strong> <em>T</em>(<em>t</em>) ∈ [0, 100].
   </p>
 
   <h2 id="model">3. Cross-Asset Model</h2>
@@ -260,7 +259,7 @@ output: s_t , P_on(t)</pre>
     <span class="num">(3)</span>
   </div>
 
-  <h3>3.5 The Macro Aestus Index</h3>
+  <h3>3.5 The Macro Aequor Index</h3>
   <p>
     Headline scalar <em>T</em>(<em>t</em>) combines slow liquidity gravity with medium-frequency
     regime probability. Before normalization:
@@ -291,9 +290,9 @@ output: s_t , P_on(t)</pre>
     not the territory of a running feed.
   </p>
 
-  <h2 id="oracle">5. The Aestus Oracle</h2>
+  <h2 id="oracle">5. The Aequor Oracle</h2>
   <p>
-    Price oracles already exist. Aestus needs a different object: a slowly moving macro state
+    Price oracles already exist. Aequor needs a different object: a slowly moving macro state
     that must be hard to game and easy to dispute. The intended design is a staked optimistic
     oracle — operators post a signed report; a challenge window opens; bonded challengers can
     force a dispute game.
@@ -350,7 +349,7 @@ output: s_t , P_on(t)</pre>
     what to trust.
   </p>
 
-  <h2 id="token">9. The Aestus Token</h2>
+  <h2 id="token">9. The Aequor Token</h2>
   <p>
     This section states plainly what the token is, why it would exist, and what it is not.
     We would rather be explicit and unexciting here than leave a gap for assumptions.
@@ -373,15 +372,15 @@ output: s_t , P_on(t)</pre>
   <table>
     <thead><tr><th>Field</th><th>Value</th></tr></thead>
     <tbody>
-      <tr><td>Ticker</td><td><span class="mono">AESTUS</span></td></tr>
-      <tr><td>Name</td><td>Aestus</td></tr>
+      <tr><td>Ticker</td><td><span class="mono">AEQUOR</span></td></tr>
+      <tr><td>Name</td><td>Aequor</td></tr>
       <tr><td>Contract (CA)</td><td><span class="mono" id="ca-value">TBA</span></td></tr>
       <tr><td>GitHub</td><td><span id="github-value">TBA</span></td></tr>
       <tr><td>Allocation</td><td>Fair launch · no private round · no team pre-mine</td></tr>
     </tbody>
   </table>
   <p>
-    Aestus should enter the same way the research is meant to live: permissionless, no private
+    Aequor should enter the same way the research is meant to live: permissionless, no private
     allocation, no venture pre-mine, no insider supply set aside. Contract address, X handle,
     and GitHub are <strong>placeholders on this page</strong> until they exist. We will not
     invent a CA here.
@@ -404,7 +403,7 @@ output: s_t , P_on(t)</pre>
 
   <h2 id="disc">10. Disclaimers</h2>
   <p>
-    Aestus is a research project under active development. The model describes statistical
+    Aequor is a research project under active development. The model describes statistical
     relationships, not certainties: correlation is not causation, and past behavior does not
     guarantee future results. Nothing here is financial, investment, or legal advice, nor an
     offer to buy or sell any security or token. All figures and tables are illustrative unless
@@ -422,7 +421,7 @@ output: s_t , P_on(t)</pre>
       off-chain data on-chain.</p>
   </div>
 
-  <div class="footer">© 2026 Aestus Research · Measure the tide. Publish the state.</div>
+  <div class="footer">© 2026 Aequor Research · Measure the tide. Publish the state.</div>
 </article>
 </main>
 
